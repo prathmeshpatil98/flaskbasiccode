@@ -13,17 +13,19 @@ def math_ops():
         num2= int(request.form['num2'])
         if operation == 'add':
             r = num1 + num2 
-            result = "The sum of " +  str(num1) +  'and' + str(num2) +  "is "  + str(r)
+            result = "The sum of "  +  str(num1)   +  'and' +   str(num2) +   "is "  +  str(r)
             # return render_template('result.html', result = result)
-        if operation == 'substract' :
-            r = num1 - num2 
+        elif operation == 'substract' :
+            r = abs(num1 - num2)
             result = "The substract of " +  str(num1) +  'and' + str(num2) +  "is "  + str(r)
-        if operation == 'multiply':
+        elif operation == 'multiply':
             r = num1 * num2 
             result = "The multiply of " +  str(num1) +  'and' + str(num2) +  "is "  + str(r)
-        if operation == 'divided':
+        elif operation == 'divided':
             r= num1 / num2 
             result = "the divide of " + str(num1) + 'and' + str(num2) + "is" + str(r)
+        else:
+            result= operation + "it is not a arithmatic operator and not supported"
         
         return render_template('result.html', result = result)
 

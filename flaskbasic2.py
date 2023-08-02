@@ -1,9 +1,33 @@
-from flask import  Flask , request,render_template
+from flask import  Flask , request, render_template , jsonify
 app = Flask(__name__)
 
 @app.route('/', methods=['GET','POST'])
 def home_page():
     return render_template('index.html')
+
+@app.route('/math',methods=['POST'])
+def math_ops():
+    if (request.method == 'POST'):
+        operation = request.form['operation']
+        num1= int(request.form['num1'])
+        num2= int(request.form['num2'])
+        if operation == 'add':
+            r = num1 + num2 
+            result = "The sum of " +  str(num1) +  'and' + str(num2) +  "is "  + str(r)
+            # return render_template('result.html', result = result)
+        if operation == 'substract' :
+            r = num1 - num2 
+            result = "The substract of " +  str(num1) +  'and' + str(num2) +  "is "  + str(r)
+        if operation == 'multiply':
+            r = num1 * num2 
+            result = "The multiply of " +  str(num1) +  'and' + str(num2) +  "is "  + str(r)
+        if operation == 'divided':
+            r= num1 / num2 
+            result = "the divide of " + str(num1) + 'and' + str(num2) + "is" + str(r)
+        
+        return render_template('result.html', result = result)
+
+
 
 
 @app.route("/")
